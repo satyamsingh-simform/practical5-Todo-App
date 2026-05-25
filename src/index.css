@@ -19,7 +19,7 @@ body{
   padding: 50px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   align-items: flex-start;
 }
 
@@ -33,7 +33,7 @@ body{
   width: 80%;
   padding: 10px;
   outline: none;
-  border: 2px solid rgb(175, 170, 170);
+  border: 2px solid rgb(233, 228, 228);
   border-radius: 5px;
   font-size: 1.2rem;
   color: rgb(80, 78, 78);
@@ -49,5 +49,47 @@ body{
 }
 
 .display-task{
-  background-color: red;
+  width: 100%;
+
+}
+ul{
+  padding: 0;
+}
+.each-task{
+  border: 2px solid rgb(233, 228, 228);
+  list-style-type: none;
+  padding: 15px;
+  font-size: 1.3rem;
+  border-bottom: none;
+  border-radius: 5px;
+}
+
+ul li:last-child{
+  border-bottom: 2px solid rgb(233, 228, 228);
+}
+
+.each-task-article{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.each-task-article button{
+  border: none;
+  background-color: white;
+}
+
+.div-checkbox{
+  display: flex;
+  gap: 10px;
+}
+.div-edit-del{
+  display: flex;
+  gap: 20px;
+}
+.pending{
+  color: orange;
+}
+button:hover{
+  cursor: pointer;
 }
