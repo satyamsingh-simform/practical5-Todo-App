@@ -1,59 +1,91 @@
-import React, { useState } from "react"
-import { Pencil } from 'lucide-react';
-import { Square } from 'lucide-react';
-import { Trash2 } from 'lucide-react';
+import { useEffect, useState } from "react"
 import type { TodoType } from "./utils/types";
-
-
+import Header from "./components/Header";
+import AddTask from "./components/AddTask";
+import Display from "./components/Display";
 
 export default function App(){
     const [input, setInput]=useState<string>('');    
     const [tasks, setTask]=useState<TodoType[]>([]);
-    
+    const [isLoaded,setIsLoaded]=useState(false)
+
+    useEffect(()=>{
+      const savedTasks=localStorage.getItem("tasks")
+
+      if(savedTasks){
+        setTask(JSON.parse(savedTasks))
+      }
+
+      setIsLoaded(true)
+    },[])
+
+    useEffect(()=>{
+      if(!isLoaded) return
+
+      localStorage.setItem("tasks",JSON.stringify(tasks))
+    },[tasks,isLoaded])
+
+
     function handleAddTask(){
+        if(!input.trim()){
+            alert('empty task');
+            return;
+        }
         const newTask:TodoType={
             id:crypto.randomUUID(),
             task:input,
             isCompleted:'pending',
         }
         setTask([...tasks,newTask]);
+        setInput('');
+    }
+
+    function handleToggle(id:string){
+        setTask(
+      tasks.map((task) =>
+        task.id === id
+          ? {
+              ...task,
+              isCompleted:
+                task.isCompleted === "pending"
+                  ? "completed"
+                  : "pending",
+            }
+          : task
+      )
+    )
+    }
+
+    function handleDelete(id: string){
+        const valid=confirm('are you sure you want to delete')
+        if(!valid){
+            return;
+        }
+        setTask(tasks.filter((task) => task.id !== id));
+    }
+
+    function handleEdit(id: string){
+      const updatedTask = prompt("Enter updated task");
+      if (!updatedTask?.trim())return;
+
+      setTask(
+        tasks.map((task)=>
+          task.id === id
+            ? {
+                ...task,
+                task: updatedTask,
+              }
+            : task
+        )
+      );
     }
 
     return(
         <>
             <div className="container">
-                <section className="task-section">
-                    <input className="task-input" type="text" placeholder="add new task ..."
-                        value={input} 
-                        onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setInput(e.currentTarget.value)}} 
-                    />
-                    <button className="add-task-btn"
-                        onClick={handleAddTask} 
-                    >add Task</button>
-                </section>
-                
-                <section className="display-task">
-                    <div>
-                        <ul className="task-ul">
-                            {tasks.map((task)=>
-                                <li className="each-task">
-                                    <article className="each-task-article">
-                                        <div className="div-checkbox">
-                                            <button className="btn-checkbox"><Square color="gray"/></button>
-                                            <span>{task.task}</span>
-                                        </div>
-                                        <div className="div-edit-del">
-                                            <span className="pending">{task.isCompleted}</span>
-                                            <button className="btn-edit"><Pencil size={20} color="gray"/></button>
-                                            <button className="btn-delete"><Trash2 size={20} color="red"/></button>
-                                        </div>
-                                    </article>
-                                </li>
-                            )}
-                        </ul>
-                    </div>
-                </section>
-                
+                <Header tasks={tasks}/>
+                <AddTask input={input} setInput={setInput} handleAddTask={handleAddTask}/>
+                <Display tasks={tasks} handleToggle={handleToggle} handleDelete={handleDelete} handleEdit={handleEdit}  />
             </div>
         </>
     )
