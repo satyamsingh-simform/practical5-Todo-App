@@ -2,24 +2,20 @@ import React, { useState } from "react"
 import { Pencil } from 'lucide-react';
 import { Square } from 'lucide-react';
 import { Trash2 } from 'lucide-react';
+import type { TodoType } from "./utils/types";
 
-type Data={
-    id:string,
-    task:string,
-    isCompleted:"pending"|"completed",
-}
+
 
 export default function App(){
     const [input, setInput]=useState<string>('');    
-    const [tasks, setTask]=useState<Data[]>([]);
+    const [tasks, setTask]=useState<TodoType[]>([]);
     
     function handleAddTask(){
-        const newTask:Data={
+        const newTask:TodoType={
             id:crypto.randomUUID(),
             task:input,
             isCompleted:'pending',
         }
-
         setTask([...tasks,newTask]);
     }
 
@@ -35,20 +31,21 @@ export default function App(){
                         onClick={handleAddTask} 
                     >add Task</button>
                 </section>
+                
                 <section className="display-task">
                     <div>
-                        <ul>
+                        <ul className="task-ul">
                             {tasks.map((task)=>
                                 <li className="each-task">
                                     <article className="each-task-article">
                                         <div className="div-checkbox">
-                                            <button><Square color="gray"/></button>
+                                            <button className="btn-checkbox"><Square color="gray"/></button>
                                             <span>{task.task}</span>
                                         </div>
                                         <div className="div-edit-del">
                                             <span className="pending">{task.isCompleted}</span>
-                                            <button><Pencil size={20} color="gray"/></button>
-                                            <button><Trash2 size={20} color="red"/></button>
+                                            <button className="btn-edit"><Pencil size={20} color="gray"/></button>
+                                            <button className="btn-delete"><Trash2 size={20} color="red"/></button>
                                         </div>
                                     </article>
                                 </li>
