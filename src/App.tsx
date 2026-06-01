@@ -27,57 +27,51 @@ export default function App(){
 
 
     function handleAddTask(){
-        if(!input.trim()){
-            alert('empty task');
-            return;
-        }
-        const newTask:TodoType={
-            id:crypto.randomUUID(),
-            task:input,
-            isCompleted:'pending',
-        }
-        setTask([...tasks,newTask]);
-        setInput('');
+      if(!(input.trim())){
+        alert('empty task');
+        return;
+      }
+      const newTask:TodoType={
+        id:crypto.randomUUID(),
+        task:input,
+        isCompleted:'pending',
+      }
+      setTask((task)=>[newTask,...task])
+      setInput('')
     }
 
     function handleToggle(id:string){
-        setTask(
-      tasks.map((task) =>
-        task.id === id
-          ? {
-              ...task,
-              isCompleted:
-                task.isCompleted === "pending"
-                  ? "completed"
-                  : "pending",
-            }
+      console.log(tasks);
+      const updatedTask:TodoType[]=tasks.map(task=>
+        task.id===id
+          ? {...task, isCompleted:task.isCompleted==='pending'?'completed':'pending'}
           : task
       )
-    )
+      console.log(updatedTask);
+      setTask(updatedTask)
     }
 
-    function handleDelete(id: string){
+    function handleDelete(id:string){
         const valid=confirm('are you sure you want to delete')
         if(!valid){
             return;
         }
-        setTask(tasks.filter((task) => task.id !== id));
+        setTask(tasks.filter(task=>!(task.id===id)))
     }
 
-    function handleEdit(id: string){
-      const updatedTask = prompt("Enter updated task");
-      if (!updatedTask?.trim())return;
-
+    function handleEdit(id:string){
+      const updateTask=prompt('enter updated task');
+      if(!(updateTask.trim())) return ;
       setTask(
-        tasks.map((task)=>
-          task.id === id
-            ? {
-                ...task,
-                task: updatedTask,
+        tasks.map(task=>
+          task.id===id
+            ?{  
+              ...task,
+              task:updateTask
               }
-            : task
+            :task
         )
-      );
+      )
     }
 
     return(

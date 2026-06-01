@@ -6,9 +6,9 @@ export default function Header({tasks}:HeaderProps){
                 <h1>ToDo-App</h1>
                 <button className="task-count">
                     <p className="task-num">
-                        {tasks.filter(task=>task.isCompleted==="completed").length}/{tasks.length}
+                        {tasks.filter(task=>task.isCompleted==='completed').length}/{tasks.length}
                     </p>
-                    success
+                    <span style={{color:'green'}}>success</span>
                 </button>
             </header>
     )
