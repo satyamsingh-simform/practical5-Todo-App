@@ -3,7 +3,7 @@ import type { TodoType } from "./types";
 
 export default function useTodos(input:string, setInput:React.Dispatch<React.SetStateAction<string>>){
     const [tasks, setTask]=useState<TodoType[]>([]);
-    const [isLoaded,setIsLoaded]=useState(false)
+    const [isLoaded,setIsLoaded]=useState(false);
 
     useEffect(()=>{
       const savedTasks=localStorage.getItem("tasks")
@@ -54,7 +54,11 @@ export default function useTodos(input:string, setInput:React.Dispatch<React.Set
     }
 
     function handleEdit(id:string){
-      const updateTask=prompt('enter updated task');
+      const editableUser=tasks.find((task)=>task.id===id)
+      const updateTask=String(prompt('enter updated task',editableUser?.task));
+      if(updateTask==="null"){
+        return
+      };
       if(!(updateTask.trim())) return ;
       setTask(
         tasks.map(task=>
@@ -68,5 +72,5 @@ export default function useTodos(input:string, setInput:React.Dispatch<React.Set
       )
     }
 
-    return { tasks, handleAddTask, handleToggle, handleDelete, handleEdit};
+    return {tasks, handleAddTask, handleToggle, handleDelete, handleEdit};
 }

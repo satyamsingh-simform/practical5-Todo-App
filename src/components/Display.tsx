@@ -1,14 +1,44 @@
 import { Pencil, Square, CheckSquare, Trash2 } from 'lucide-react';
 import type { DisplayProps } from '../utils/types';
 
+export default function Display({handleToggle,handleDelete,handleEdit,tasks,filter,setFilter}:DisplayProps){
+    const filteredTask=tasks.filter((task)=>{
+      if(filter==='pending'){
+        return task.isCompleted==='pending'
+      }
+      if(filter==='completed'){
+        return task.isCompleted==='completed'
+      }
+      return true;
+    })
 
-
-export default function Display({tasks,handleToggle,handleDelete,handleEdit}:DisplayProps){
-    
     return(
         <section className="display-task">
+          <div className='filter'>
+            <div className='radio'>
+              <input type="radio" id='all' name='task' defaultChecked
+               onClick={()=>setFilter('all')}
+              />
+              <label htmlFor="all">all</label>
+            </div>
+
+            <div className='radio'>
+             <input type="radio" id='pending' name='task'
+             onClick={()=>setFilter('pending')}
+             />
+            <label htmlFor="pending">pending</label>
+            </div>
+
+            <div className='radio'>
+             <input type="radio" id='completed' name='task'
+             onClick={()=>setFilter('completed')}
+             />
+            <label htmlFor="completed">completed</label>
+            </div>
+
+          </div>
           <ul className="task-ul">
-            {tasks.map((task)=>(
+            {filteredTask.map((task)=>(
               <li key={task.id} className="each-task">
                 <article className="each-task-article">
                   <div className="div-checkbox">

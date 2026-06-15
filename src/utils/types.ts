@@ -19,4 +19,6 @@ export type DisplayProps={
     handleToggle:(id:string)=>void
     handleDelete:(id:string)=>void
     handleEdit:(id:string)=>void
+    filter:'all'|'pending'|'completed',
+    setFilter: React.Dispatch<React.SetStateAction<"pending" | "completed" | "all">>
 }

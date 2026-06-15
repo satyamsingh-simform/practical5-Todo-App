@@ -7,8 +7,28 @@
 body{
   display: flex;
   justify-content: center;
-  margin: 100px;
+  position: relative;
+  margin-top: 100px;
 }
+.theme-btn{
+  position: absolute;
+  top: -100px;
+  left: 0;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: large;
+  border-radius: 10px;
+  border: 1px solid salmon;
+}
+.theme-btn:hover{
+  cursor: pointer;
+}
+
+.dark{
+  background-color: black;
+  color: white;
+}
+
 
 .container{
   min-height: 700px;
@@ -42,9 +62,25 @@ body{
 .task-section{
   width: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+}
+.add-task-input{
+  display: flex;
   justify-content: space-between;
 }
-
+.filter-task{
+  display: flex;
+  gap: 30px;
+}
+.task{
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
 .task-input{
   width: 80%;
   padding: 10px;
@@ -69,10 +105,22 @@ body{
 
 .display-task{
   width: 100%;
-
+}
+.filter{
+  display: flex;
+  gap: 50px;
+}
+.radio{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
 }
 .task-ul{
   padding: 0;
+  height: 500px;
+  overflow: auto;
 }
 .each-task{
   border: 2px solid rgb(233, 228, 228);
