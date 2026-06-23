@@ -12,15 +12,31 @@ body{
 
 .container{
   min-height: 700px;
-  width: 800px;
+  width:80vh;
+  max-width: 800px;
   box-shadow:0 5px 10px rgba(0, 0, 0, 0.5);
   background-color: white;
   border-radius: 10px;
-  padding: 50px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: flex-start;
+}
+.todo-heading{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task-count{
+  height: 100px;
+  width: 100px;
+  border: 1px solid salmon;
+  border-radius: 50%;
+}
+.task-num{
+  font-size: 2rem;
 }
 
 .task-section{
@@ -92,6 +108,9 @@ body{
 }
 .pending{
   color: orange;
+}
+.completed{
+  color:green;
 }
 
 .btn-delete,.btn-edit,.btn-checkbox:hover{
