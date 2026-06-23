@@ -1,0 +1,118 @@
+*{
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  margin: 100px;
+}
+
+.container{
+  min-height: 700px;
+  width:80vh;
+  max-width: 800px;
+  box-shadow:0 5px 10px rgba(0, 0, 0, 0.5);
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+.todo-heading{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task-count{
+  height: 100px;
+  width: 100px;
+  border: 1px solid salmon;
+  border-radius: 50%;
+}
+.task-num{
+  font-size: 2rem;
+}
+
+.task-section{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-input{
+  width: 80%;
+  padding: 10px;
+  outline: none;
+  border: 2px solid rgb(233, 228, 228);
+  border-radius: 5px;
+  font-size: 1.2rem;
+  color: rgb(80, 78, 78);
+}
+
+.add-task-btn{
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: none;
+  background-color: blueviolet;
+  color: white;
+}
+.add-task-btn:hover{
+  cursor: pointer;
+}
+
+.display-task{
+  width: 100%;
+
+}
+.task-ul{
+  padding: 0;
+}
+.each-task{
+  border: 2px solid rgb(233, 228, 228);
+  list-style-type: none;
+  padding: 15px;
+  font-size: 1.3rem;
+  border-bottom: none;
+  border-radius: 5px;
+}
+
+.task-ul li:last-child{
+  border-bottom: 2px solid rgb(233, 228, 228);
+}
+
+.each-task-article{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.each-task-article button{
+  border: none;
+  background-color: white;
+}
+
+.div-checkbox{
+  display: flex;
+  gap: 10px;
+}
+.div-edit-del{
+  display: flex;
+  gap: 20px;
+}
+.pending{
+  color: orange;
+}
+.completed{
+  color:green;
+}
+
+.btn-delete,.btn-edit,.btn-checkbox:hover{
+  cursor: pointer;
+}
