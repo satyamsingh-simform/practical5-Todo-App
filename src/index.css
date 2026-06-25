@@ -1,90 +1,116 @@
-*{
+* {
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
-:root{
-  --shadow:0 5px 10px rgba(0, 0, 0, 0.5);
+:root {
+  --shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
-.dark{
-  background-color:black;
-  color:white;
-  --shadow:0 5px 10px rgba(245, 244, 244, 0.5);
+html,
+body,
+#root {
+  min-height: 100vh;
 }
-.body-bg{
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+.body-bg {
   background-color: black;
 }
 
-body{
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
-}
-.theme-btn{
+.theme-btn {
   padding: 10px 20px;
   margin: 10px;
   font-size: large;
   border-radius: 10px;
   border: 1px solid salmon;
 }
-.theme-btn:hover{
+
+.theme-btn:hover {
   cursor: pointer;
 }
 
-.container{
+.container {
   min-height: 700px;
-  width:80vh;
+  width: 80vh;
   max-width: 800px;
-  box-shadow:0 5px 10px rgba(0, 0, 0, 0.5);
+
+  background-color: white;
+  color: black;
+
   box-shadow: var(--shadow);
   border-radius: 10px;
   padding: 30px;
+
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: flex-start;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
-.todo-heading{
+
+.container.dark {
+  background-color: black;
+  color: white;
+  --shadow: 0 5px 10px rgba(245, 244, 244, 0.5);
+}
+
+.todo-heading {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.task-count{
+
+.task-count {
   height: 100px;
   width: 100px;
   border: 1px solid salmon;
   border-radius: 50%;
 }
-.task-num{
+
+.task-num {
   font-size: 2rem;
 }
 
-.task-section{
+.task-section {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 15px;
 }
-.add-task-input{
+
+.add-task-input {
   display: flex;
   justify-content: space-between;
 }
-.filter-task{
+
+.filter-task {
   display: flex;
   gap: 30px;
 }
-.task{
+
+.task {
   padding: 0 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
 }
-.task-input{
+
+.task-input {
   width: 80%;
   padding: 10px;
   outline: none;
@@ -92,9 +118,16 @@ body{
   border-radius: 5px;
   font-size: 1.2rem;
   color: rgb(80, 78, 78);
+  background-color: white;
 }
 
-.add-task-btn{
+.container.dark .task-input {
+  background-color: #222;
+  color: white;
+  border-color: #555;
+}
+
+.add-task-btn {
   padding: 12px 20px;
   font-size: 1.2rem;
   border-radius: 5px;
@@ -102,30 +135,35 @@ body{
   background-color: blueviolet;
   color: white;
 }
-.add-task-btn:hover{
+
+.add-task-btn:hover {
   cursor: pointer;
 }
 
-.display-task{
+.display-task {
   width: 100%;
 }
-.filter{
+
+.filter {
   display: flex;
   gap: 50px;
 }
-.radio{
+
+.radio {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
   margin-bottom: 20px;
 }
-.task-ul{
+
+.task-ul {
   padding: 0;
   height: 500px;
   overflow: auto;
 }
-.each-task{
+
+.each-task {
   border: 2px solid rgb(233, 228, 228);
   list-style-type: none;
   padding: 15px;
@@ -134,36 +172,59 @@ body{
   border-radius: 5px;
 }
 
-.task-ul li:last-child{
+.container.dark .each-task {
+  border-color: #666;
+}
+
+.task-ul li:last-child {
   border-bottom: 2px solid rgb(233, 228, 228);
 }
 
-.each-task-article{
+.container.dark .task-ul li:last-child {
+  border-bottom-color: #666;
+}
+
+.each-task-article {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.each-task-article button{
+.each-task-article button {
   border: none;
   background-color: white;
 }
 
-.div-checkbox{
+.container.dark .each-task-article button {
+  background-color: black;
+  color: white;
+}
+
+.div-checkbox {
   display: flex;
   gap: 10px;
 }
-.div-edit-del{
+
+.div-edit-del {
   display: flex;
   gap: 20px;
 }
-.pending{
-  color: orange;
-}
-.completed{
-  color:green;
+
+.container.dark input[type="checkbox"],
+.container.dark input[type="radio"] {
+  accent-color: #4f9cff;
 }
 
-.btn-delete,.btn-edit,.btn-checkbox:hover{
+.pending {
+  color: orange;
+}
+
+.completed {
+  color: green;
+}
+
+.btn-delete,
+.btn-edit,
+.btn-checkbox:hover {
   cursor: pointer;
 }
