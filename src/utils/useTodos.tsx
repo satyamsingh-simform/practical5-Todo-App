@@ -35,13 +35,11 @@ export default function useTodos(input:string, setInput:React.Dispatch<React.Set
     }
 
     function handleToggle(id:string){
-      console.log(tasks);
       const updatedTask:TodoType[]=tasks.map(task=>
         task.id===id
           ? {...task, isCompleted:task.isCompleted==='pending'?'completed':'pending'}
           : task
       )
-      console.log(updatedTask);
       setTask(updatedTask)
     }
 
