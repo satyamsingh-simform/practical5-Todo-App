@@ -4,10 +4,33 @@
   font-family: 'Times New Roman', Times, serif;
 }
 
+:root{
+  --shadow:0 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark{
+  background-color:black;
+  color:white;
+  --shadow:0 5px 10px rgba(245, 244, 244, 0.5);
+}
+.body-bg{
+  background-color: black;
+}
+
 body{
   display: flex;
   justify-content: center;
-  margin: 100px;
+  margin-top: 50px;
+}
+.theme-btn{
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: large;
+  border-radius: 10px;
+  border: 1px solid salmon;
+}
+.theme-btn:hover{
+  cursor: pointer;
 }
 
 .container{
@@ -15,7 +38,7 @@ body{
   width:80vh;
   max-width: 800px;
   box-shadow:0 5px 10px rgba(0, 0, 0, 0.5);
-  background-color: white;
+  box-shadow: var(--shadow);
   border-radius: 10px;
   padding: 30px;
   display: flex;
@@ -42,9 +65,25 @@ body{
 .task-section{
   width: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+}
+.add-task-input{
+  display: flex;
   justify-content: space-between;
 }
-
+.filter-task{
+  display: flex;
+  gap: 30px;
+}
+.task{
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
 .task-input{
   width: 80%;
   padding: 10px;
@@ -69,10 +108,22 @@ body{
 
 .display-task{
   width: 100%;
-
+}
+.filter{
+  display: flex;
+  gap: 50px;
+}
+.radio{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
 }
 .task-ul{
   padding: 0;
+  height: 500px;
+  overflow: auto;
 }
 .each-task{
   border: 2px solid rgb(233, 228, 228);
